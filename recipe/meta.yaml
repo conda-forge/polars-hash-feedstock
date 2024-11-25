@@ -6,13 +6,13 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/polars_hash-{{ version }}.tar.gz
+  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/polars_hash-{{ version }}.tar.gz
     sha256: f3f053299ab79269a3f1911e1ae5c6f46119e26435882af728ad86915d3999d1
   - url: https://raw.githubusercontent.com/ion-elgreco/polars-hash/main/LICENSE
     sha256: 017feb4ae87126410f1d9beb6af4c9df3c25a0051d87db66da6f26c509f5348d
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -27,7 +27,7 @@ requirements:
     - pip
   run:
     - python
-    - polars >=0.20.16
+    - polars >=1.5.0
 
 test:
   imports:
