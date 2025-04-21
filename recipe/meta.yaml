@@ -1,5 +1,5 @@
 {% set name = "polars-hash" %}
-{% set version = "0.5.2" %}
+{% set version = "0.5.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/polars_hash-{{ version }}.tar.gz
-    sha256: c16f58739e231a4c39d5956e49340b7c3415c8ad49f4a183d529b5984f1c37d9
+    sha256: 17f2d11818822752e572b6cb995b3c41cc2e2073f8cebdc549d72ea31aad12ec
   - url: https://raw.githubusercontent.com/ion-elgreco/polars-hash/main/LICENSE
     sha256: 017feb4ae87126410f1d9beb6af4c9df3c25a0051d87db66da6f26c509f5348d
 
