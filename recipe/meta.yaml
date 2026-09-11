@@ -12,7 +12,12 @@ source:
     sha256: 017feb4ae87126410f1d9beb6af4c9df3c25a0051d87db66da6f26c509f5348d
 
 build:
-  number: 0
+  number: 1
+  # polars-hash builds a stable-ABI (abi3) extension targeting Python 3.10+
+  # (see `pyo3 = { features = ["abi3-py310"] }` in Cargo.toml), so a single build
+  # is compatible with every supported Python. Build only against python_min.
+  python_version_independent: true   # [is_abi3]
+  skip: True                         # [is_abi3 and not is_python_min]
 
 requirements:
   build:
@@ -25,6 +30,7 @@ requirements:
     - cargo-bundle-licenses
     - make
   host:
+    - python-abi3                    # [is_abi3]
     - python
     - maturin >=1.0,<2.0
     - pip
@@ -37,8 +43,11 @@ test:
     - polars_hash
   commands:
     - pip check
+    - abi3audit $SP_DIR/polars_hash/_internal.abi3.so -s -v --assume-minimum-abi3 {{ python_min }}   # [unix and is_abi3]
+    - abi3audit %SP_DIR%\polars_hash\_internal.pyd -s -v --assume-minimum-abi3 {{ python_min }}       # [win and is_abi3]
   requires:
     - pip
+    - abi3audit                      # [is_abi3]
 
 about:
   home: https://github.com/ion-elgreco/polars-hash

@@ -1,0 +1,11 @@
+# The extension is built against the stable ABI targeting Python 3.10
+# (`pyo3` feature `abi3-py310`), so we lower python_min from the conda-forge
+# default (3.11) to 3.10 and build the single abi3 artifact against 3.10.
+# `python` and `is_python_min` are zipped in the global pinning, so both are
+# overridden here to keep the zip consistent.
+python:
+  - 3.10.* *_cpython
+is_python_min:
+  - true
+python_min:
+  - "3.10"
